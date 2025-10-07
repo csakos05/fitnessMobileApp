@@ -1,5 +1,5 @@
 import '../storage/abstract_hive_repository.dart';
-import '../storage/example_hive_model.dart';
+import 'example_hive_model.dart';
 
 class ProductRepository extends HiveRepository<Product> {
   static const String boxName = 'products';

@@ -1,5 +1,5 @@
 import 'package:fitt_app/test_page/ex_repo.dart';
-import 'package:fitt_app/storage/example_hive_model.dart';
+import 'package:fitt_app/test_page/example_hive_model.dart';
 import 'package:flutter/material.dart';
 
 class TestPage extends StatefulWidget {
