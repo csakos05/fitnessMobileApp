@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'infrastructure/localization/app_localizations.dart';
 import 'infrastructure/localization/app_localizations_delegate.dart';
+import 'infrastructure/routes/routes.dart';
+import 'package:fitt_app/index.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +15,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: createRouterConfiguration(),
       title: 'Flutter Demo',
       localizationsDelegates: [
         AppLocalizationsDelegate(),
@@ -51,7 +54,6 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -131,6 +133,10 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            ElevatedButton(onPressed: () {
+              final AppNavigationService navigationService = AppNavigationService.of(context);
+              navigationService.navigateToTest();
+            }, child: Text('Click me') )
           ],
         ),
       ),

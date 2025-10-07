@@ -1,0 +1,4 @@
+enum NavigationRoutes {
+  home,
+  test,
+}
