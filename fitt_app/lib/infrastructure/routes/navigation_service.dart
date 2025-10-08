@@ -23,4 +23,8 @@ class AppNavigationService {
   void navigateToTest() {
     goToRoute(route: NavigationRoutes.test);
   }
+
+  void navigateToLogin() {
+    goToRoute(route: NavigationRoutes.loginPage);
+  }
 }

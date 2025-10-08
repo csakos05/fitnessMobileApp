@@ -1,5 +1,4 @@
 import 'package:fitt_app/storage/hive_boxes.dart';
-
 import '../storage/abstract_hive_repository.dart';
 import 'example_hive_model.dart';
 
