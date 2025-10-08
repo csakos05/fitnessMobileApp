@@ -22,7 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state is Authenticated) {
+        if (state is ProfileCreatedSuccess) {
           navigationService.goToTest();
         }
       },
@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
           ElevatedButton(
             onPressed: () {
               context.read<AuthBloc>().add(
-                LoginRequested(nickname: nickName, age: age),
+                ProfileCreate(nickname: nickName, age: age),
               );
             },
             child: const Text('Login'),

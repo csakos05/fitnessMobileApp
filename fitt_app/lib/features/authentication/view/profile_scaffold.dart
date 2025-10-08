@@ -1,4 +1,4 @@
-import 'package:fitt_app/features/authentication/view/login_page.dart';
+import 'package:fitt_app/features/authentication/view/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

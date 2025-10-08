@@ -14,11 +14,11 @@ final class AuthLoading extends AuthState {
   List<Object> get props => [];
 }
 
-final class Authenticated extends AuthState {
+final class ProfileCreatedSuccess extends AuthState {
   final String nickname;
   final int age;
 
-  const Authenticated({required this.nickname, required this.age});
+  const ProfileCreatedSuccess({required this.nickname, required this.age});
 
   @override
   List<Object> get props => [nickname, age];
