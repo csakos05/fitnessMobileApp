@@ -1,14 +1,19 @@
 import 'package:fitt_app/storage/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'firebase_options.dart';
 import 'infrastructure/localization/app_localizations.dart';
 import 'infrastructure/localization/app_localizations_delegate.dart';
 import 'infrastructure/routes/routes.dart';
 import 'package:fitt_app/index.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await StorageService().initialize();
   runApp(const MyApp());
 }
