@@ -9,7 +9,6 @@ GoRouter createRouterConfiguration() => GoRouter(
   redirect: topLevelRedirectHandler,
   initialLocation: '/',
   routes: <RouteBase>[
-
     GoRoute(
       path: '/',
       builder: (BuildContext context, GoRouterState state) {
