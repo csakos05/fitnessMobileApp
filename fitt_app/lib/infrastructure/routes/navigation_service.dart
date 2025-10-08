@@ -20,11 +20,11 @@ class AppNavigationService {
     GoRouter.of(context).go(_createRoutePath(route), extra: extra);
   }
 
-  void navigateToTest() {
+  void goToTest() {
     goToRoute(route: NavigationRoutes.test);
   }
 
-  void navigateToLogin() {
+  void goToLogin() {
     goToRoute(route: NavigationRoutes.loginPage);
   }
 }

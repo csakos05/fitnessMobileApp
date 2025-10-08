@@ -11,9 +11,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await StorageService().initialize();
   runApp(const MyApp());
 }
@@ -33,14 +31,12 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [
-        Locale(Locales.en),
-        Locale(Locales.hu),
-      ],
+      supportedLocales: const [Locale(Locales.en), Locale(Locales.hu)],
       // This determines which locale to use if the device locale isn't supported
       localeResolutionCallback: (locale, supportedLocales) {
         // Default to English if device locale isn't supported
-        if (locale != null && AppLocalizations.supportedLocales.contains(locale.languageCode)) {
+        if (locale != null &&
+            AppLocalizations.supportedLocales.contains(locale.languageCode)) {
           return locale;
         }
         return const Locale(Locales.en); // Return English as fallback
@@ -137,15 +133,27 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-             Text(appLocalizations.resolve('Test')),
+            Text(appLocalizations.resolve('Test')),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ElevatedButton(onPressed: () {
-              final AppNavigationService navigationService = AppNavigationService.of(context);
-              navigationService.navigateToTest();
-            }, child: Text('Click me') )
+            ElevatedButton(
+              onPressed: () {
+                final AppNavigationService navigationService =
+                    AppNavigationService.of(context);
+                navigationService.goToTest();
+              },
+              child: Text('Click me'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final AppNavigationService navigationService =
+                    AppNavigationService.of(context);
+                navigationService.goToLogin();
+              },
+              child: Text('goToLogin'),
+            ),
           ],
         ),
       ),
