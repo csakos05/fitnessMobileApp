@@ -1,27 +1,27 @@
 class UserProfileModel {
   final String userId;
-  final String username;
-  final int age;
+  final String userEmail;
+  final DateTime createdAt;
 
   UserProfileModel({
     required this.userId,
-    required this.username,
-    required this.age,
+    required this.userEmail,
+    required this.createdAt,
   });
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
     return UserProfileModel(
       userId: json['userId'],
-      username: json['username'],
-      age: json['age'],
+      userEmail: json['userEmail'],
+      createdAt: DateTime.parse(json['createdAt'])
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'userId': userId,
-      'username': username,
-      'age': age,
+      'userEmail': userEmail,
+      'createdAt': createdAt.toIso8601String(),
     };
   }
 }

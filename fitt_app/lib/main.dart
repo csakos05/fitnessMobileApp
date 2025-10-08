@@ -154,6 +154,14 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text('goToLogin'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                final AppNavigationService navigationService =
+                AppNavigationService.of(context);
+                navigationService.goToProfile();
+              },
+              child: Text('goToLogin'),
+            ),
           ],
         ),
       ),

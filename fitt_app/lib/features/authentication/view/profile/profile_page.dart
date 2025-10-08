@@ -2,7 +2,7 @@ import 'package:fitt_app/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'logic/auth_bloc.dart';
+import 'logic/profile_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final AppNavigationService navigationService = AppNavigationService.of(
       context,
     );
-    return BlocListener<AuthBloc, AuthState>(
+    return BlocListener<ProfileBloc, AuthState>(
       listener: (context, state) {
         if (state is ProfileCreatedSuccess) {
           navigationService.goToTest();
@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
           ElevatedButton(
             onPressed: () {
-              context.read<AuthBloc>().add(
+              context.read<ProfileBloc>().add(
                 ProfileCreate(nickname: nickName, age: age),
               );
             },

@@ -1,4 +1,4 @@
-part of 'auth_bloc.dart';
+part of 'profile_bloc.dart';
 
 sealed class AuthEvent extends Equatable {
   const AuthEvent();

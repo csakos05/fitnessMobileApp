@@ -3,7 +3,8 @@ import 'package:fitt_app/infrastructure/routes/top_level_redirect_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:fitt_app/index.dart';
-import '../../features/authentication/view/profile_scaffold.dart';
+import '../../features/authentication/view/login/login_scaffold.dart';
+import '../../features/authentication/view/profile/profile_scaffold.dart';
 
 GoRouter createRouterConfiguration() => GoRouter(
   redirect: topLevelRedirectHandler,
@@ -17,6 +18,12 @@ GoRouter createRouterConfiguration() => GoRouter(
       routes: [
         GoRoute(
           path: '/${NavigationRoutes.loginPage.name}',
+          builder: (context, state) {
+            return LoginScaffold();
+          },
+        ),
+        GoRoute(
+          path: '/${NavigationRoutes.profilePage.name}',
           builder: (context, state) {
             return const ProfileScaffold();
           },

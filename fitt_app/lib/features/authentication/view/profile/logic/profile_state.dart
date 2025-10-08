@@ -1,15 +1,15 @@
-part of 'auth_bloc.dart';
+part of 'profile_bloc.dart';
 
 sealed class AuthState extends Equatable {
   const AuthState();
 }
 
-final class AuthInitial extends AuthState {
+final class ProfileInitial extends AuthState {
   @override
   List<Object> get props => [];
 }
 
-final class AuthLoading extends AuthState {
+final class ProfileLoading extends AuthState {
   @override
   List<Object> get props => [];
 }
