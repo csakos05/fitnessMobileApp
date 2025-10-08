@@ -14,14 +14,9 @@ class UserFirebaseRepository extends BaseFirestoreRepository<UserProfileModel> {
   Future<void> createProfile(UserProfileModel userProfile) async {
     await create(userProfile.userId, userProfile);
   }
-  // You can add user-specific methods here if needed,
-  // for example, findByUsername:
-  //
-  // Future<UserProfileModel?> findByUsername(String username) async {
-  //   final snapshot = await collection.where('username', isEqualTo: username).limit(1).get();
-  //   if (snapshot.docs.isEmpty) {
-  //     return null;
-  //   }
-  //   return snapshot.docs.first.data();
-  // }
+
+  Future<UserProfileModel?> getProfile(String userId) async {
+    return await read(userId);
+  }
+
 }

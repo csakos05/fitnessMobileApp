@@ -19,6 +19,9 @@ class AppNavigationService {
   void goToRoute({required NavigationRoutes route, Object? extra}) {
     GoRouter.of(context).go(_createRoutePath(route), extra: extra);
   }
+  void goToHome() {
+    goToRoute(route: NavigationRoutes.home);
+  }
 
   void goToTest() {
     goToRoute(route: NavigationRoutes.test);

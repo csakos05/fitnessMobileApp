@@ -8,13 +8,19 @@ import 'package:fitt_app/storage/hive_adapters.dart';
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(CategoriesAdapter());
+    registerAdapter(GenderAdapter());
     registerAdapter(ProductAdapter());
+    registerAdapter(SubscriptionTypeAdapter());
+    registerAdapter(UserProfileModelAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(CategoriesAdapter());
+    registerAdapter(GenderAdapter());
     registerAdapter(ProductAdapter());
+    registerAdapter(SubscriptionTypeAdapter());
+    registerAdapter(UserProfileModelAdapter());
   }
 }

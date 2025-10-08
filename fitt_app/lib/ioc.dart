@@ -1,9 +1,17 @@
 
+import 'package:fitt_app/features/authentication/domain/interactor/profile_interactor.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+
+import 'features/authentication/domain/service/auth_service.dart';
+import 'features/authentication/domain/service/login_notifier.dart';
 
 void registerTypesToIoCBeforeRunApp() {
+final services = GetIt.instance;
 
-
+services.registerSingleton<LoginNotifier>(LoginNotifier());
+services.registerSingleton<ProfileInteractor>(ProfileInteractor());
+services.registerSingleton<AuthService>(AuthService());
 }
 
 Future<void> registerTypesToIoCAfterRunApp({required Locale locale}) async {
