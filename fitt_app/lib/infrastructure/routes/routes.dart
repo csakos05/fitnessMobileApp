@@ -18,7 +18,7 @@ GoRouter createRouterConfiguration() => GoRouter(
         GoRoute(
           path: '/${NavigationRoutes.loginPage.name}',
           builder: (context, state) {
-            return const LoginScaffold();
+            return const ProfileScaffold();
           },
         ),
         GoRoute(

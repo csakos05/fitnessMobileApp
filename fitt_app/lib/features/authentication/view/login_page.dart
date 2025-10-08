@@ -4,14 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'logic/auth_bloc.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _ProfilePageState extends State<ProfilePage> {
   String nickName = '';
   int age = 0;
 

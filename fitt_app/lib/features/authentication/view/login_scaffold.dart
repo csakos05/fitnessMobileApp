@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'logic/auth_bloc.dart';
 
-class LoginScaffold extends StatelessWidget {
-  const LoginScaffold({super.key});
+class ProfileScaffold extends StatelessWidget {
+  const ProfileScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class LoginScaffold extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Login Scaffold'),
         ),
-        body: LoginPage(),
+        body: ProfilePage(),
       ),
     );
   }
