@@ -1,10 +1,11 @@
+import 'package:fitt_app/storage/hive_boxes.dart';
+
 import '../storage/abstract_hive_repository.dart';
 import 'example_hive_model.dart';
 
 class ProductRepository extends HiveRepository<Product> {
-  static const String boxName = 'products';
 
-  ProductRepository() : super(hiveBoxName: boxName);
+  ProductRepository() : super(hiveBoxName: HiveBoxNames.productsBox);
 
   Future<Product?> getProductById(int id) async {
     return await getValue(id);
