@@ -1,5 +1,5 @@
 import 'package:fitt_app/features/appstart/logic/app_start_bloc.dart';
-import 'package:fitt_app/features/appstart/widgets/AppStartLoadingScreen.dart';
+import 'package:fitt_app/features/appstart/widgets/app_start_loading_screen.dart';
 import 'package:fitt_app/storage/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

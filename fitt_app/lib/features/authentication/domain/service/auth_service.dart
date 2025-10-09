@@ -64,9 +64,12 @@ class AuthService {
 
   Future<void> signOut() async {
     try {
-      await _googleSignIn.signOut();
-    await _firebaseAuth.signOut();
-      _configNotifier.authStatus = AuthStatus.loggedOut;
+      if (currentUser != null) {
+        await _profileInteractor.clearLocalProfile(userId: currentUser!.uid);
+        await _googleSignIn.signOut();
+        await _firebaseAuth.signOut();
+        _configNotifier.authStatus = AuthStatus.loggedOut;
+      }
     } catch (e) {
       rethrow;
     }
