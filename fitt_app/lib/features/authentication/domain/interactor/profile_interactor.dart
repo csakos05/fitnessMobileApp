@@ -30,9 +30,11 @@ class ProfileInteractor {
     }
     final localProfile = await _hiveRepository.getUserProfile(user.uid);
     if (localProfile != null) {
+      print('Profile loaded from local storage');
       return localProfile;
     }
     final remoteProfile = await _firebaseRepository.getProfile(user.uid);
+    print('Profile loaded from remote storage');
     if (remoteProfile != null) {
       await _hiveRepository.saveUserProfile(remoteProfile);
       return remoteProfile;

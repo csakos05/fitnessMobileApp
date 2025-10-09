@@ -1,13 +1,11 @@
-import 'dart:io';
 import 'package:fitt_app/storage/hive_registrar.g.dart';
 import 'package:hive_ce/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 class StorageService {
   Future<void> initialize() async {
-    // Use the app's temporary directory which is available without extra packages
-    final directory = Directory.systemTemp.createTempSync('hive_data');
+    final directory = await getApplicationDocumentsDirectory();
 
-    // Initialize Hive with the temporary directory path
     Hive
       ..init(directory.path)
       ..registerAdapters();
