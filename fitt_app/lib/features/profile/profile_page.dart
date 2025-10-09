@@ -54,13 +54,12 @@ class _ProfilePageState extends State<ProfilePage> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Login Page'),
         Text('Email: ${profile.userEmail}'),
         Text('User ID: ${profile.userId}'),
-        Text('Current Nickname: ${profile.createdAt}'),
+        Text('Created: ${profile.createdAt}'),
         Text('Current Age: ${profile.age}'),
         Text('Subscription: ${profile.subscriptionType.name}'),
-        Text('Subscription: ${profile.gender?.name ?? 'Not specified'}'),
+        Text('Gender: ${profile.gender?.name ?? 'Not specified'}'),
         ElevatedButton(
           onPressed: () {
             navigationService.goToProfileUpdate();

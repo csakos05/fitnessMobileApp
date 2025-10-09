@@ -1,4 +1,5 @@
 import 'package:fitt_app/features/appstart/logic/app_start_bloc.dart';
+import 'package:fitt_app/features/appstart/widgets/AppStartLoadingScreen.dart';
 import 'package:fitt_app/storage/storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,13 +56,7 @@ class _MyAppState extends State<MyApp> {
       },
       builder: (context, state) {
         if (state is AppStartLoading || state is AppStartInitial) {
-          return const MaterialApp(
-            home: Scaffold(
-              body: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-          );
+          return const AppStartLoadingScreen();
         }
         else if(state is AppStartSuccess){
           return MaterialApp.router(
@@ -121,5 +116,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-

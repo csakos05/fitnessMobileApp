@@ -38,7 +38,6 @@ class _ProfileUpdatePageState extends State<ProfileUpdatePage> {
   @override
   void initState() {
     super.initState();
-    // Lekérjük a mentett profilt
     context.read<ProfileBloc>().add(ProfileRequestEvent());
   }
 
@@ -51,7 +50,7 @@ class _ProfileUpdatePageState extends State<ProfileUpdatePage> {
   }
 
   void _populateFields(UserProfileModel profile) {
-    if (_currentProfile != null) return; // Csak egyszer töltjük fel
+    if (_currentProfile != null) return;
 
     _currentProfile = profile;
     _weightController.text = profile.weight?.toString() ?? '';
