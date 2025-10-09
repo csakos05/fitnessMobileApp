@@ -1,15 +1,21 @@
 
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:fitt_app/features/authentication/domain/interactor/profile_interactor.dart';
+import 'package:fitt_app/infrastructure/configuration_api/configuration_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/authentication/domain/service/auth_service.dart';
-import 'features/authentication/domain/service/login_notifier.dart';
+import 'infrastructure/configuration_api/config_notifier.dart';
 
 void registerTypesToIoCBeforeRunApp() {
 final services = GetIt.instance;
 
-services.registerSingleton<LoginNotifier>(LoginNotifier());
+services.registerSingleton<ConfigNotifier>(ConfigNotifier());
+services.registerSingleton<ConfigurationService>(ConfigurationService(
+  configNotifier: services.get<ConfigNotifier>(),
+  remoteConfig: FirebaseRemoteConfig.instance,
+));
 services.registerSingleton<ProfileInteractor>(ProfileInteractor());
 services.registerSingleton<AuthService>(AuthService());
 }

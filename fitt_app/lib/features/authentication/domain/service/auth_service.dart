@@ -3,17 +3,17 @@ import 'package:fitt_app/features/authentication/domain/interactor/profile_inter
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import 'login_notifier.dart';
+import '../../../../infrastructure/configuration_api/config_notifier.dart';
 
 class AuthService {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final LoginNotifier _loginNotifier = GetIt.instance<LoginNotifier>();
+  final ConfigNotifier _configNotifier = GetIt.instance<ConfigNotifier>();
   final ProfileInteractor _profileInteractor = GetIt.instance<ProfileInteractor>();
 
 
 
-  AuthService({FirebaseAuth? firebaseAuth, GoogleSignIn? googleSignIn, LoginNotifier? loginNotifier})
+  AuthService({FirebaseAuth? firebaseAuth, GoogleSignIn? googleSignIn, ConfigNotifier? loginNotifier})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         _googleSignIn = googleSignIn ?? GoogleSignIn.instance;
 
@@ -23,9 +23,9 @@ class AuthService {
   Future<void> checkLoginStatus() async {
     final user = await _firebaseAuth.authStateChanges().first;
     if (user != null) {
-      _loginNotifier.value = AuthStatus.loggedIn;
+      _configNotifier.authStatus = AuthStatus.loggedIn;
     } else {
-      _loginNotifier.value = AuthStatus.loggedOut;
+      _configNotifier.authStatus = AuthStatus.loggedOut;
     }
   }
 
@@ -35,7 +35,7 @@ class AuthService {
         email: email,
         password: password,
       );
-      _loginNotifier.value = AuthStatus.loggedIn;
+      _configNotifier.authStatus = AuthStatus.loggedIn;
       await _profileInteractor.getProfile();
       return userCredential.user;
     } catch (e) {
@@ -54,7 +54,7 @@ class AuthService {
       );
 
       final userCredential = await _firebaseAuth.signInWithCredential(credential);
-      _loginNotifier.value = AuthStatus.loggedIn;
+      _configNotifier.authStatus = AuthStatus.loggedIn;
       await _profileInteractor.getProfile();
       return userCredential.user;
     } catch (e) {
@@ -66,7 +66,7 @@ class AuthService {
     try {
       await _googleSignIn.signOut();
     await _firebaseAuth.signOut();
-      _loginNotifier.value = AuthStatus.loggedOut;
+      _configNotifier.authStatus = AuthStatus.loggedOut;
     } catch (e) {
       rethrow;
     }

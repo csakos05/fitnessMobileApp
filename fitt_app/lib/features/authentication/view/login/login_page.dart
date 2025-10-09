@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final AppNavigationService _navigationService =
+    final AppNavigationService navigationService =
         AppNavigationService.of(context);
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
           ).showSnackBar(const SnackBar(content: Text('Login Successful!')));
           // Navigate to home page
           // Navigator.of(context).pushReplacementNamed('/home');
-          _navigationService.goToHome();
+          navigationService.goToHome();
         } else if (state is LoginFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Login Failed: ${state.error}')),
