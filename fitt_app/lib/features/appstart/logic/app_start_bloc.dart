@@ -13,8 +13,8 @@ class AppStartBloc extends Bloc<AppStartEvent, AppStartState> {
 
   AppStartBloc() : super(AppStartInitial()) {
     on<AppStartEvent>((event, emit) async {
+        emit(AppStartLoading());
       try {
-        // emit(AppStartLoading());
         await _configurationService.checkVersion();
         await _authService.checkLoginStatus();
         emit(AppStartSuccess());
