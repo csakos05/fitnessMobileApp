@@ -34,5 +34,18 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       final AuthService authService = GetIt.instance<AuthService>();
       authService.signOut();
     });
+
+    on<ProfileUpdateEvent>((event, emit) async {
+      emit(ProfileLoading());
+      try {
+        // Itt hívd meg a repository update metódusát
+        await _profileInteractor.updateProfile(event.profile);
+        emit(ProfileUpdateSuccess());
+        // Újra lekérjük a frissített profilt
+        emit(ProfileLoadSuccess(profile: event.profile));
+      } catch (e) {
+        emit(ProfileUpdateFailure(error: e.toString()));
+      }
+    });
   }
 }

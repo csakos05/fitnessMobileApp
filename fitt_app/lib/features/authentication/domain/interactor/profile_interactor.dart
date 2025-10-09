@@ -44,4 +44,9 @@ class ProfileInteractor {
   Future<void> clearLocalProfile({required String userId}) async {
     await _hiveRepository.deleteUserProfile(userId);
   }
+
+  Future<void> updateProfile(UserProfileModel profile) async {
+    await _firebaseRepository.update(profile.userId, profile.toJson());
+    await _hiveRepository.saveUserProfile(profile);
+  }
 }

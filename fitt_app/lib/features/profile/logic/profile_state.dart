@@ -41,3 +41,17 @@ final class ProfileLoadFailure extends ProfileState {
   @override
   List<Object> get props => [error];
 }
+
+class ProfileUpdateSuccess extends ProfileState {
+  @override
+  List<Object> get props => [];
+}
+
+class ProfileUpdateFailure extends ProfileState {
+  final String error;
+
+  const ProfileUpdateFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}

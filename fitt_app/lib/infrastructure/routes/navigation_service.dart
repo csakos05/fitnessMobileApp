@@ -31,6 +31,12 @@ class AppNavigationService {
     goToRoute(route: NavigationRoutes.profilePage);
   }
 
+  void goToProfileUpdate() {
+    GoRouter.of(context).push(
+        '/${NavigationRoutes.profilePage.name}/${NavigationRoutes.profileUpdatePage.name}'
+    );
+  }
+
   void goToLogin() {
     goToRoute(route: NavigationRoutes.loginPage);
   }

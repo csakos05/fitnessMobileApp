@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/authentication/domain/service/auth_service.dart';
+import 'features/profile/logic/profile_bloc.dart';
 import 'infrastructure/configuration_api/config_notifier.dart';
 
 void registerTypesToIoCBeforeRunApp() {
@@ -29,7 +30,8 @@ Future<void> registerTypesToIoCAfterRunApp({required Locale locale}) async {
 }
 
 void registerBlocsAfterRunApp() {
-  // final services = GetIt.instance;
+  final services = GetIt.instance;
+  services.registerSingleton<ProfileBloc>(ProfileBloc());
 }
 
 Future<void> registerBlocsBeforeRunApp() async {}

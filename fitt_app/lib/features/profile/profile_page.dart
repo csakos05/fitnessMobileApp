@@ -48,6 +48,9 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget buildBody(BuildContext context, UserProfileModel profile) {
+    final AppNavigationService navigationService = AppNavigationService.of(
+      context,
+    );
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -58,6 +61,12 @@ class _ProfilePageState extends State<ProfilePage> {
         Text('Current Age: ${profile.age}'),
         Text('Subscription: ${profile.subscriptionType.name}'),
         Text('Subscription: ${profile.gender?.name ?? 'Not specified'}'),
+        ElevatedButton(
+          onPressed: () {
+            navigationService.goToProfileUpdate();
+          },
+          child: Text('update profile'),
+        ),
         ElevatedButton(
           onPressed: () {
             context.read<ProfileBloc>().add(LogoutEvent());

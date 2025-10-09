@@ -18,6 +18,7 @@ void main() async {
   await StorageService().initialize();
   registerTypesToIoCBeforeRunApp();
   runApp(const MyAppBlocProvider());
+  registerBlocsAfterRunApp();
 }
 
 class MyAppBlocProvider extends StatelessWidget {

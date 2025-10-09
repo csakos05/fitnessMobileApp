@@ -25,3 +25,12 @@ class LogoutEvent extends ProfileEvent {
   @override
   List<Object?> get props => [];
 }
+
+class ProfileUpdateEvent extends ProfileEvent {
+  final UserProfileModel profile;
+
+  const ProfileUpdateEvent({required this.profile});
+
+  @override
+  List<Object> get props => [profile];
+}

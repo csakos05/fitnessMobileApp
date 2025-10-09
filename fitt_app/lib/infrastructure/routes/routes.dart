@@ -1,3 +1,4 @@
+import 'package:fitt_app/features/profile/profile_update_page.dart';
 import 'package:fitt_app/features/workout_planner/workout_planner_page.dart';
 import 'package:fitt_app/infrastructure/configuration_api/pages/update_mandatory_page.dart';
 import 'package:fitt_app/infrastructure/routes/navigation_routes.dart';
@@ -10,7 +11,7 @@ import '../../features/home/home.dart';
 import '../../features/train/train_page.dart';
 import '../configuration_api/config_notifier.dart';
 import '../../features/authentication/view/login/login_scaffold.dart';
-import '../../features/profile/profile_scaffold.dart';
+import '../../features/profile/profile_provider.dart';
 import 'app_scaffold.dart';
 
 final ConfigNotifier configNotifier = GetIt.instance<ConfigNotifier>();
@@ -37,7 +38,6 @@ GoRouter createRouterConfiguration() => GoRouter(
                 ),
               ],
             ),
-            // 2. branch: WorkoutPlannerPage
             StatefulShellBranch(
               routes: [
                 GoRoute(
@@ -48,7 +48,6 @@ GoRouter createRouterConfiguration() => GoRouter(
                 ),
               ],
             ),
-            // 3. branch: TrainPage
             StatefulShellBranch(
               routes: [
                 GoRoute(
@@ -59,7 +58,6 @@ GoRouter createRouterConfiguration() => GoRouter(
                 ),
               ],
             ),
-            // 4. branch: ProfilePage
             StatefulShellBranch(
               routes: [
                 GoRoute(
@@ -67,6 +65,14 @@ GoRouter createRouterConfiguration() => GoRouter(
                   builder: (context, state) {
                     return const ProfileProvider();
                   },
+                  routes: [
+                    GoRoute(
+                      path: NavigationRoutes.profileUpdatePage.name,
+                      builder: (context, state) {
+                        return ProfileUpdatePageProvider();
+                      },
+                    ),
+                  ]
                 ),
               ],
             ),
