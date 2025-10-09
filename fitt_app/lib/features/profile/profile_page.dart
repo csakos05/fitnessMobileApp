@@ -47,8 +47,9 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Column buildBody(BuildContext context, UserProfileModel profile) {
+  Widget buildBody(BuildContext context, UserProfileModel profile) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text('Login Page'),
         Text('Email: ${profile.userEmail}'),
@@ -57,6 +58,12 @@ class _ProfilePageState extends State<ProfilePage> {
         Text('Current Age: ${profile.age}'),
         Text('Subscription: ${profile.subscriptionType.name}'),
         Text('Subscription: ${profile.gender?.name ?? 'Not specified'}'),
+        ElevatedButton(
+          onPressed: () {
+            context.read<ProfileBloc>().add(LogoutEvent());
+          },
+          child: Text('logout'),
+        ),
       ],
     );
   }

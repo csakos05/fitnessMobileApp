@@ -20,11 +20,11 @@ class AppNavigationService {
     GoRouter.of(context).go(_createRoutePath(route), extra: extra);
   }
   void goToHome() {
-    goToRoute(route: NavigationRoutes.home);
+    goToRoute(route: NavigationRoutes.homePage);
   }
 
   void goToTest() {
-    goToRoute(route: NavigationRoutes.test);
+    goToRoute(route: NavigationRoutes.testPage);
   }
 
   void goToProfile() {
@@ -33,5 +33,14 @@ class AppNavigationService {
 
   void goToLogin() {
     goToRoute(route: NavigationRoutes.loginPage);
+  }
+  void goToUpdateMandatory() {
+    goToRoute(route: NavigationRoutes.updateMandatoryPage);
+  }
+  void goToTrain() {
+    goToRoute(route: NavigationRoutes.trainPage);
+  }
+  void goToWorkoutPlanner() {
+    goToRoute(route: NavigationRoutes.workoutPlannerPage);
   }
 }

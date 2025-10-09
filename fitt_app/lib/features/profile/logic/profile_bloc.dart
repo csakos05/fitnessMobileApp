@@ -1,9 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:fitt_app/features/authentication/domain/service/auth_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../domain/interactor/profile_interactor.dart';
-import '../../../domain/model/user_profile_model.dart';
+import 'package:get_it/get_it.dart';
+import '../../authentication/domain/interactor/profile_interactor.dart';
+import '../../authentication/domain/model/user_profile_model.dart';
 
 part 'profile_event.dart';
+
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
@@ -25,6 +28,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       } catch (e) {
         emit(ProfileLoadFailure(error: e.toString()));
       }
+    });
+
+    on<LogoutEvent>((event, emit) async {
+      final AuthService authService = GetIt.instance<AuthService>();
+      authService.signOut();
     });
   }
 }

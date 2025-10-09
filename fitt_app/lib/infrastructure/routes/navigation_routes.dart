@@ -1,7 +1,9 @@
 enum NavigationRoutes {
-  home,
-  test,
+  homePage,
+  testPage,
   profilePage,
   loginPage,
   updateMandatoryPage,
+  trainPage,
+  workoutPlannerPage,
 }

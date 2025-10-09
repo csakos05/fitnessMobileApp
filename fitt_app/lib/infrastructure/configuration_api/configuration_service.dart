@@ -12,16 +12,20 @@ class ConfigurationService {
 
   Future<ConfigurationResponseModel> fetchConfiguration() async {
     try {
-
+      await remoteConfig.setConfigSettings(
+        RemoteConfigSettings(
+          fetchTimeout: const Duration(seconds: 10),
+          minimumFetchInterval: const Duration(hours: 1),
+        ),
+      );
+      await remoteConfig.ensureInitialized();
       await remoteConfig.fetchAndActivate();
 
-      final mandatoryVersion = remoteConfig.getString('mandatory_version');
+      final mandatoryVersion = remoteConfig.getString('MandatoryVersion');
 
       return ConfigurationResponseModel(mandatoryVersion: mandatoryVersion);
     } catch (e) {
-      return ConfigurationResponseModel(
-        mandatoryVersion: remoteConfig.getString('mandatory_version'),
-      );
+      return ConfigurationResponseModel(mandatoryVersion: '0.0.0');
     }
   }
 
