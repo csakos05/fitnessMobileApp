@@ -9,6 +9,7 @@ class UserProfileModel extends HiveObject {
   final String userEmail;
   final DateTime createdAt;
   final SubscriptionType subscriptionType;
+  final bool profileCompleted;
   final double? weight;
   final double? height;
   final int? age;
@@ -19,6 +20,7 @@ class UserProfileModel extends HiveObject {
     required this.userEmail,
     required this.createdAt,
     required this.subscriptionType,
+    required this.profileCompleted,
     this.weight,
     this.height,
     this.age,
@@ -36,6 +38,7 @@ class UserProfileModel extends HiveObject {
             (json['subscriptionType'] ?? 'free'),
         orElse: () => SubscriptionType.free,
       ),
+      profileCompleted: json['profileCompleted'] ?? false,
       weight: (json['weight'] != null)
           ? (json['weight'] as double).toDouble()
           : null,
@@ -52,6 +55,7 @@ class UserProfileModel extends HiveObject {
       'userEmail': userEmail,
       'createdAt': createdAt.toIso8601String(),
       'subscriptionType': subscriptionType.toString().split('.').last,
+      'profileCompleted': profileCompleted,
       if (weight != null) 'weight': weight,
       if (height != null) 'height': height,
       if (age != null) 'age': age,

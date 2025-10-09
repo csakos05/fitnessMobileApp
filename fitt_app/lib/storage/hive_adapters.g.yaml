@@ -45,7 +45,7 @@ types:
         index: 1
   UserProfileModel:
     typeId: 4
-    nextIndex: 8
+    nextIndex: 9
     fields:
       userId:
         index: 0
@@ -63,3 +63,5 @@ types:
         index: 6
       gender:
         index: 7
+      profileCompleted:
+        index: 8

@@ -1,5 +1,8 @@
 import 'package:hive_ce/hive.dart';
 
+//generate hiveadapter with command:
+// dart run build_runner build --delete-conflicting-outputs
+
 abstract class HiveRepository<T> {
   final String hiveBoxName;
 

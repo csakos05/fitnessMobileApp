@@ -11,6 +11,7 @@ class ProfileInteractor {
       userId: user.uid,
       userEmail: user.email ?? '',
       subscriptionType: SubscriptionType.free,
+      profileCompleted: false,
       createdAt: DateTime.now(),
       age: 0,
       height: 0.0,

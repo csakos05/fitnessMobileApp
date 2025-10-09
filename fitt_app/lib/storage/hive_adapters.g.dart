@@ -182,6 +182,7 @@ class UserProfileModelAdapter extends TypeAdapter<UserProfileModel> {
       userEmail: fields[1] as String,
       createdAt: fields[2] as DateTime,
       subscriptionType: fields[3] as SubscriptionType,
+      profileCompleted: fields[8] as bool,
       weight: (fields[4] as num?)?.toDouble(),
       height: (fields[5] as num?)?.toDouble(),
       age: (fields[6] as num?)?.toInt(),
@@ -192,7 +193,7 @@ class UserProfileModelAdapter extends TypeAdapter<UserProfileModel> {
   @override
   void write(BinaryWriter writer, UserProfileModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.userId)
       ..writeByte(1)
@@ -208,7 +209,9 @@ class UserProfileModelAdapter extends TypeAdapter<UserProfileModel> {
       ..writeByte(6)
       ..write(obj.age)
       ..writeByte(7)
-      ..write(obj.gender);
+      ..write(obj.gender)
+      ..writeByte(8)
+      ..write(obj.profileCompleted);
   }
 
   @override
