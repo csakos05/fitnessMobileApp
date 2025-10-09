@@ -15,6 +15,7 @@ class AppStartBloc extends Bloc<AppStartEvent, AppStartState> {
     on<AppStartEvent>((event, emit) async {
         emit(AppStartLoading());
       try {
+        await Future.delayed(const Duration(seconds: 2));
         await _configurationService.checkVersion();
         await _authService.checkLoginStatus();
         emit(AppStartSuccess());

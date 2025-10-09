@@ -50,69 +50,52 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AppStartBloc, AppStartState>(
-      listener: (context, state) {
-
+    return MaterialApp.router(
+      routerConfig: createRouterConfiguration(),
+      title: 'Flutter Demo',
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale(Locales.en), Locale(Locales.hu)],
+      localeResolutionCallback: (locale, supportedLocales) {
+        if (locale != null &&
+            AppLocalizations.supportedLocales.contains(locale.languageCode)) {
+          return locale;
+        }
+        return const Locale(Locales.en);
       },
-      builder: (context, state) {
-        if (state is AppStartLoading || state is AppStartInitial) {
-          return const AppStartLoadingScreen();
-        }
-        else if(state is AppStartSuccess){
-          return MaterialApp.router(
-            routerConfig: createRouterConfiguration(),
-            title: 'Flutter Demo',
-            localizationsDelegates: [
-              AppLocalizationsDelegate(),
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [Locale(Locales.en), Locale(Locales.hu)],
-            // This determines which locale to use if the device locale isn't supported
-            localeResolutionCallback: (locale, supportedLocales) {
-              // Default to English if device locale isn't supported
-              if (locale != null &&
-                  AppLocalizations.supportedLocales.contains(
-                    locale.languageCode,
-                  )) {
-                return locale;
-              }
-              return const Locale(Locales.en); // Return English as fallback
-            },
-            theme: ThemeData(
-              // This is the theme of your application.
-              //
-              // TRY THIS: Try running your application with "flutter run". You'll see
-              // the application has a purple toolbar. Then, without quitting the app,
-              // try changing the seedColor in the colorScheme below to Colors.green
-              // and then invoke "hot reload" (save your changes or press the "hot
-              // reload" button in a Flutter-supported IDE, or press "r" if you used
-              // the command line to start the app).
-              //
-              // Notice that the counter didn't reset back to zero; the application
-              // state is not lost during the reload. To reset the state, use hot
-              // restart instead.
-              //
-              // This works for code too, not just values: Most code changes can be
-              // tested with just a hot reload.
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            ),
-          );
-        } else if (state is AppStartError){
-          return MaterialApp(
-            home: Scaffold(
-              body: Center(child: Text('Error during app initialization')),
-            ),
-          );
-        } else {
-          return const MaterialApp(
-            home: Scaffold(
-              body: SizedBox(),
-            ),
-          );
-        }
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      ),
+      builder: (context, router) {
+        return BlocBuilder<AppStartBloc, AppStartState>(
+          builder: (context, state) {
+            return AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              child: _buildScreen(state, router),
+            );
+          },
+        );
       },
     );
+  }
+
+  Widget _buildScreen(AppStartState state, Widget? router) {
+    if (state is AppStartSuccess) {
+      // A Key biztosítja, hogy az AnimatedSwitcher tudja, hogy új widgetről van szó.
+      return SizedBox(key: const ValueKey('App'), child: router);
+    }
+    if (state is AppStartError) {
+      return const MaterialApp( // Egyszerűsített hibaképernyő
+        key: ValueKey('Error'),
+        home: Scaffold(
+          body: Center(child: Text('Error during app initialization')),
+        ),
+      );
+    }
+    return const AppStartLoadingScreen(key: ValueKey('Loading'));
   }
 }
