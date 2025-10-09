@@ -23,21 +23,14 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final AppNavigationService navigationService =
-        AppNavigationService.of(context);
+    final AppNavigationService navigationService = AppNavigationService.of(context);
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
         if (state is LoginSuccess) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(const SnackBar(content: Text('Login Successful!')));
-          // Navigate to home page
-          // Navigator.of(context).pushReplacementNamed('/home');
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Login Successful!')));
           navigationService.goToHome();
         } else if (state is LoginFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Login Failed: ${state.error}')),
-          );
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Failed: ${state.error}')));
         }
       },
       builder: (context, state) {
@@ -75,9 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 12),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<LoginBloc>().add(
-                      const LoginWithGoogleRequested(),
-                    );
+                    context.read<LoginBloc>().add(const LoginWithGoogleRequested());
                   },
                   child: const Text('Bejelentkezés Google-lal'),
                 ),
