@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
       return SizedBox(key: const ValueKey('App'), child: router);
     }
     if (state is AppStartError) {
-      return const MaterialApp( // Egyszerűsített hibaképernyő
+      return const MaterialApp(
         key: ValueKey('Error'),
         home: Scaffold(
           body: Center(child: Text('Error during app initialization')),
