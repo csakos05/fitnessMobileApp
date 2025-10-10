@@ -8,19 +8,37 @@ import 'package:fitt_app/storage/hive_adapters.dart';
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(CategoriesAdapter());
+    registerAdapter(EquipmentAdapter());
+    registerAdapter(ExerciseAdapter());
     registerAdapter(GenderAdapter());
+    registerAdapter(MuscleAdapter());
+    registerAdapter(MuscleCategoryAdapter());
+    registerAdapter(MuscleGroupAdapter());
     registerAdapter(ProductAdapter());
     registerAdapter(SubscriptionTypeAdapter());
     registerAdapter(UserProfileModelAdapter());
+    registerAdapter(WorkoutAdapter());
+    registerAdapter(WorkoutDifficultyAdapter());
+    registerAdapter(WorkoutExerciseAdapter());
+    registerAdapter(WorkoutPlanAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(CategoriesAdapter());
+    registerAdapter(EquipmentAdapter());
+    registerAdapter(ExerciseAdapter());
     registerAdapter(GenderAdapter());
+    registerAdapter(MuscleAdapter());
+    registerAdapter(MuscleCategoryAdapter());
+    registerAdapter(MuscleGroupAdapter());
     registerAdapter(ProductAdapter());
     registerAdapter(SubscriptionTypeAdapter());
     registerAdapter(UserProfileModelAdapter());
+    registerAdapter(WorkoutAdapter());
+    registerAdapter(WorkoutDifficultyAdapter());
+    registerAdapter(WorkoutExerciseAdapter());
+    registerAdapter(WorkoutPlanAdapter());
   }
 }

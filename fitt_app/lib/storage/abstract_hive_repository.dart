@@ -34,6 +34,16 @@ abstract class HiveRepository<T> {
     await box.put(key, value);
   }
 
+  Future<void> putAll(Map<dynamic, T> entries) async {
+    final box = await getBox();
+    await box.putAll(entries);
+  }
+
+  Future<void> addAll (List<T> list) async {
+    final box = await getBox();
+    await box.addAll(list);
+  }
+
   Future<List<T>> getAllValues() async {
     final box = await getBox();
     return box.values.cast<T>().toList();
