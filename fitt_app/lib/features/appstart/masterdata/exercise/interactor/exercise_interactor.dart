@@ -1,6 +1,6 @@
 import 'package:fitt_app/features/appstart/masterdata/exercise/repositories/exercise_firebase_repository.dart';
 import 'package:fitt_app/features/appstart/masterdata/exercise/repositories/exercise_hive_repository.dart';
-import 'package:fitt_app/features/workout_planner/models/workout_model.dart';
+import 'package:fitt_app/features/appstart/masterdata/models/workout_model.dart';
 
 class ExerciseInteractor {
   final ExerciseFirebaseRepository _remoteRepository =

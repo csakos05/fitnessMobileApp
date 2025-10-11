@@ -2,24 +2,24 @@ import 'package:fitt_app/features/appstart/masterdata/equipment/interactor/equip
 import 'package:fitt_app/features/appstart/masterdata/exercise/interactor/exercise_interactor.dart';
 import 'package:fitt_app/features/appstart/masterdata/muscle/interactor/muscle_interactor.dart';
 import 'package:fitt_app/features/appstart/masterdata/workout/interactor/workout_interactor.dart';
-import 'package:fitt_app/features/workout_planner/models/workout_model.dart';
+import 'package:fitt_app/features/appstart/masterdata/models/workout_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import '../../appstart/masterdata/workoutplan/interactor/workoutplan_interactor.dart';
 
-part 'workout_planner_event.dart';
+part 'database_viewer_event.dart';
 
-part 'workout_planner_state.dart';
+part 'database_viewer_state.dart';
 
-class WorkoutPlannerBloc extends Bloc<WorkoutPlannerEvent, WorkoutPlannerState> {
+class DatabaseViewerBloc extends Bloc<DatabaseViewerEvent, DatabaseViewerState> {
   final ExerciseInteractor _exerciseInteractor = GetIt.instance<ExerciseInteractor>();
   final MuscleInteractor _muscleInteractor = GetIt.instance<MuscleInteractor>();
   final EquipmentInteractor _equipmentInteractor = GetIt.instance<EquipmentInteractor>();
   final WorkoutPlanInteractor _workoutPlanInteractor = GetIt.instance<WorkoutPlanInteractor>();
   final WorkoutInteractor _workoutInteractor = GetIt.instance<WorkoutInteractor>();
 
-  WorkoutPlannerBloc() : super(WorkoutPlannerInitial()) {
-    on<WorkoutPlannerEvent>((event, emit) {
+  DatabaseViewerBloc() : super(Initial()) {
+    on<DatabaseViewerEvent>((event, emit) {
       // TODO: implement event handler
     });
 
@@ -28,7 +28,7 @@ class WorkoutPlannerBloc extends Bloc<WorkoutPlannerEvent, WorkoutPlannerState> 
     });
 
     on<InitializeEvent>((event, emit) async {
-      emit(WorkoutPlannerLoading());
+      emit(Loading());
       // try {
       //   final exercises = await _exerciseInteractor.getAllExercises();
       //   emit(WorkoutPlannerLoaded(exercises: exercises));
@@ -36,75 +36,75 @@ class WorkoutPlannerBloc extends Bloc<WorkoutPlannerEvent, WorkoutPlannerState> 
       //   print('Error loading exercises: $e $s');
       //   emit(WorkoutPlannerInitial()); // You might want to create an error state
       // }
-      emit(WorkoutPlannerLoaded()); // You might want to create an error state
+      emit(Loaded()); // You might want to create an error state
     });
 
     on<LoadExercisesEvent>((event, emit) async {
-      emit(WorkoutPlannerLoading());
+      emit(Loading());
       try {
         final exercises = await _exerciseInteractor.getAllExercises();
         if (exercises.isEmpty) {
-          emit(WorkoutPlannerNoData());
+          emit(NoData());
         } else {
           emit(ExercisesLoaded(exercises: exercises));
         }
       } catch (e) {
-        emit(WorkoutPlannerError(message: 'Failed to load exercises.'));
+        emit(Error(message: 'Failed to load exercises.'));
       }
     });
     on<LoadMusclesEvent>((event, emit) async {
-      emit(WorkoutPlannerLoading());
+      emit(Loading());
       try {
         final muscles = await _muscleInteractor.getAllMuscles();
         if (muscles.isEmpty) {
-          emit(WorkoutPlannerNoData());
+          emit(NoData());
         } else {
           emit(MusclesLoaded(muscles: muscles));
         }
       } catch (e) {
-        emit(WorkoutPlannerError(message: 'Failed to load muscles.'));
+        emit(Error(message: 'Failed to load muscles.'));
       }
     });
 
     on<LoadEquipmentsEvent>((event, emit) async {
-      emit(WorkoutPlannerLoading());
+      emit(Loading());
       try {
         final equipments = await _equipmentInteractor.getAllEquipments();
         if (equipments.isEmpty) {
-          emit(WorkoutPlannerNoData());
+          emit(NoData());
         } else {
           emit(EquipmentsLoaded(equipments: equipments));
         }
       } catch (e) {
-        emit(WorkoutPlannerError(message: 'Failed to load equipments.'));
+        emit(Error(message: 'Failed to load equipments.'));
       }
     });
 
     on<LoadWorkoutPlansEvent>((event, emit) async {
-      emit(WorkoutPlannerLoading());
+      emit(Loading());
       try {
         final workoutPlans = await _workoutPlanInteractor.getAllWorkoutPlans();
         if (workoutPlans.isEmpty) {
-          emit(WorkoutPlannerNoData());
+          emit(NoData());
         } else {
           emit(WorkoutPlansLoaded(workoutPlans: workoutPlans));
         }
       } catch (e) {
-        emit(WorkoutPlannerError(message: 'Failed to load workout plans.'));
+        emit(Error(message: 'Failed to load workout plans.'));
       }
     });
 
     on<LoadWorkoutsEvent>((event, emit) async {
-      emit(WorkoutPlannerLoading());
+      emit(Loading());
       try {
         final workouts = await _workoutInteractor.getAllWorkouts();
         if (workouts.isEmpty) {
-          emit(WorkoutPlannerNoData());
+          emit(NoData());
         } else {
           emit(WorkoutsLoaded(workouts: workouts));
         }
       } catch (e) {
-        emit(WorkoutPlannerError(message: 'Failed to load workouts.'));
+        emit(Error(message: 'Failed to load workouts.'));
       }
     });
   }

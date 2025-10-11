@@ -1,4 +1,5 @@
 import 'package:fitt_app/features/profile/profile_update_page.dart';
+import 'package:fitt_app/features/database_viewer/database_viewer_page.dart';
 import 'package:fitt_app/features/workout_planner/workout_planner_page.dart';
 import 'package:fitt_app/infrastructure/configuration_api/pages/update_mandatory_page.dart';
 import 'package:fitt_app/infrastructure/routes/navigation_routes.dart';
@@ -73,6 +74,16 @@ GoRouter createRouterConfiguration() => GoRouter(
                       },
                     ),
                   ]
+                ),
+              ],
+            ),
+            StatefulShellBranch(
+              routes: [
+                GoRoute(
+                  path: '/${NavigationRoutes.databaseViewerPage.name}',
+                  builder: (BuildContext context, GoRouterState state) {
+                    return const DatabaseViewerPage();
+                  },
                 ),
               ],
             ),

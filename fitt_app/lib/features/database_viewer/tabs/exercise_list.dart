@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../logic/workout_planner_bloc.dart';
+import '../logic/database_viewer_bloc.dart';
 
 class ExerciseList extends StatefulWidget {
   const ExerciseList({super.key});
@@ -15,12 +15,12 @@ class _ExerciseListState extends State<ExerciseList> {
   @override
   void initState() {
     super.initState();
-    context.read<WorkoutPlannerBloc>().add(LoadExercisesEvent());
+    context.read<DatabaseViewerBloc>().add(LoadExercisesEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorkoutPlannerBloc, WorkoutPlannerState>(
+    return BlocBuilder<DatabaseViewerBloc, DatabaseViewerState>(
       builder: (context, state) {
         if(state is ExercisesLoaded) {
           return ListView.separated(
@@ -35,9 +35,9 @@ class _ExerciseListState extends State<ExerciseList> {
               );
             },
           );
-        } else if(state is WorkoutPlannerLoading) {
+        } else if(state is Loading) {
           return Center(child: CircularProgressIndicator());
-        } else if(state is WorkoutPlannerError) {
+        } else if(state is Error) {
           return Center(child: Text('Error: ${state.message}'));
         } else {
           return Center(child: Text('No exercises loaded.'));

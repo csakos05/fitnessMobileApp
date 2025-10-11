@@ -1,7 +1,7 @@
 import 'package:fitt_app/features/appstart/masterdata/muscle/repositories/muscle_firebase_repository.dart';
 import 'package:fitt_app/features/appstart/masterdata/muscle/repositories/muscle_hive_repository.dart';
 
-import '../../../../workout_planner/models/workout_model.dart';
+import '../../models/workout_model.dart';
 
 class MuscleInteractor {
   final MuscleFirebaseRepository remoteRepository = MuscleFirebaseRepository();

@@ -1,4 +1,4 @@
-import 'package:fitt_app/features/workout_planner/models/workout_model.dart';
+import 'package:fitt_app/features/appstart/masterdata/models/workout_model.dart';
 import 'package:hive_ce/hive.dart';
 
 import '../features/authentication/domain/model/user_profile_model.dart';

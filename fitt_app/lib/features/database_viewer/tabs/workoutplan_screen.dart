@@ -1,25 +1,26 @@
-import 'package:fitt_app/features/workout_planner/logic/workout_planner_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class WorkoutplanScreen extends StatefulWidget {
-  const WorkoutplanScreen({super.key});
+import '../logic/database_viewer_bloc.dart';
+
+class WorkoutplanList extends StatefulWidget {
+  const WorkoutplanList({super.key});
 
   @override
-  State<WorkoutplanScreen> createState() => _WorkoutplanScreenState();
+  State<WorkoutplanList> createState() => _WorkoutplanListState();
 }
 
-class _WorkoutplanScreenState extends State<WorkoutplanScreen> {
+class _WorkoutplanListState extends State<WorkoutplanList> {
 
   @override
   void initState() {
     super.initState();
-    context.read<WorkoutPlannerBloc>().add(LoadWorkoutPlansEvent());
+    context.read<DatabaseViewerBloc>().add(LoadWorkoutPlansEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<WorkoutPlannerBloc, WorkoutPlannerState>(
+    return BlocBuilder<DatabaseViewerBloc, DatabaseViewerState>(
       builder: (context, state) {
         if(state is WorkoutPlansLoaded) {
           return ListView.separated(
@@ -30,9 +31,9 @@ class _WorkoutplanScreenState extends State<WorkoutplanScreen> {
               return Text(workoutPlan.toString());
             },
           );
-        } else if(state is WorkoutPlannerLoading) {
+        } else if(state is Loading) {
           return Center(child: CircularProgressIndicator());
-        } else if(state is WorkoutPlannerError) {
+        } else if(state is Error) {
           return Center(child: Text('Error: ${state.message}'));
         } else {
           return Center(child: Text('No workout plans loaded.'));

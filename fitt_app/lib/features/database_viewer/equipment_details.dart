@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../appstart/masterdata/equipment/interactor/equipment_interactor.dart';
-import 'models/workout_model.dart';
+import '../appstart/masterdata/models/workout_model.dart';
 
 class EquipmentDetails extends StatefulWidget {
   final String equipmentId;

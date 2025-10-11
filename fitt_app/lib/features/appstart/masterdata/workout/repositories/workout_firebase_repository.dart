@@ -1,6 +1,6 @@
 // lib/features/workout_planner/repositories/workout_firebase_repository.dart
 
-import 'package:fitt_app/features/workout_planner/models/workout_model.dart';
+import 'package:fitt_app/features/appstart/masterdata/models/workout_model.dart';
 import 'package:fitt_app/infrastructure/firestore/base_firestore_repository.dart';
 import 'package:fitt_app/infrastructure/firestore/firestore_collections.dart';
 

@@ -7,4 +7,5 @@ enum NavigationRoutes {
   trainPage,
   workoutPlannerPage,
   profileUpdatePage,
+  databaseViewerPage,
 }
